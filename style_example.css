@@ -1,0 +1,146 @@
+@charset "UTF-8";
+/**
+ * Contact form with CAPTCHA
+ *
+ * This file is part of a module for pluck (http://www.pluck-cms.org/).
+ * It provides an example for advanced form styles.
+ *
+ * @copyright 2012 Paul Voegler
+ * @author Paul Voegler (http://www.voegler.eu/)
+ * @version 1.0 (October 2012)
+ * @license GPL Version 3, 29 June 2007
+ * See docs/COPYING for the complete license.
+ */
+
+
+/* contactform_captcha common styles */
+
+form {
+	margin-top: 0.7em;
+	margin-bottom: 0.5em;
+	font-size: 100%;
+	color: #333333;
+}
+
+input, textarea, select {
+	margin: 0.2em 0;
+	border: 0.1em solid #c0c0c0;
+	border-radius: 0.4em;
+	padding: 0.2em;
+	background: #fbfbfb;
+	/*box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0; /* conflicts with browser form validation highlights */
+	font-size: 100%;
+}
+
+input:hover, textarea:hover, select:hover {
+	border-color: #0088bf;
+}
+
+input:active, input:focus, textarea:active, textarea:focus, select:active, select:focus {
+	border-color: #0088bf;
+	background-color: #fefefe;
+	/*box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0, 0 0 0.2em 0 #0088bf; /* conflicts with browser form validation highlights */
+}
+
+input[type="submit"], input[type="reset"], input[type="button"] {
+	border: 0.1em solid #a0a0a0;
+	border-radius: 0.4em;
+	padding: 0.2em 1em;
+	background: #f0f0f0;
+	box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0;
+	color: #333333;
+	font-weight: bold;
+}
+
+input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:focus, input[type="reset"]:hover, input[type="reset"]:active, input[type="reset"]:focus, input[type="button"]:hover, input[type="button"]:active, input[type="button"]:focus {
+	border-color: #0088bf;
+	box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0, 0 0 0.2em 0 #0088bf;
+	color: #0088bf;
+	cursor: pointer;
+}
+
+/* contactform_captcha specific styles */
+
+.module_contactform_captcha .error {
+	color: #c40233;
+}
+
+.module_contactform_captcha .success {
+	color: #00a368;
+}
+
+#contactform_captcha {
+	margin: 1.3em 0;
+	width: 32.6em;
+}
+
+#contactform_captcha:after {
+	content: " ";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+#contactform_captcha > div > span.error {
+	font-size: 115%;
+}
+
+#contactform_captcha label {
+	margin: 0.7em 0 0.2em 0;
+	font-weight: bold;
+}
+
+#contactform_captcha label .error {
+	font-size: 80%;
+	margin-left: 0.5em;
+}
+
+#contactform_captcha input.error, #contactform_captcha textarea.error {
+	box-shadow: 0 0 0.2em 0.1em #ff0000;
+}
+
+#cfc_logo {
+	float: right;
+	margin-top: 1em;
+	width: 10em;
+	height: 7.125em;
+}
+
+#cfc_name, #cfc_email {
+	width: 20em;
+}
+
+#cfc_subject {
+	width: 32em;
+}
+
+#cfc_message {
+	width: 32em;
+	height: 14em;
+}
+
+#cfc_captcha {
+	display: block;
+	width: 3.4em;
+}
+
+#cfc_submit {
+	float: right;
+}
+
+#cfc_captcha_img {
+	float: left;
+	margin-right: 0.5em;
+	border: 0.1em solid #7f7f7f;
+	border-radius: 0.4em;
+	height: 4em;
+}
+
+#cfc_captcha_update {
+	float: left;
+}
+
+#cfc_captcha_play {
+	float: left;
+}

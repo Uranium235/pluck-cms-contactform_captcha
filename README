@@ -1,0 +1,43 @@
+Contact form with CAPTCHA
+
+This project a module for pluck (http://www.pluck-cms.org/). It shows a 
+HTML5 contact form, which is protected by a CAPTCHA.
+
+It features
+ - a grayscale image with customizable contrast and sharpness.
+ - generating an audio version played with a HTML5 audio tag, if
+   compatible, and provides a downloadable wav file otherwise.
+ - HTML5 form validation by the browser, if supported, and JavaScript
+   validation.
+ - AJAX CAPTCHA code verification prior to posting the form.
+
+
+Installation
+
+If you received this module as a .tar.gz archive, you should use pluck's
+module manager to install the module.
+
+If you want to create a .tar.gz installation file for pluck from this
+source, all files and folders must be inside a directory called
+"contactform_captcha". The file should be called
+"contactform_captch.tar.gz".
+
+Otherwise all files and folders must be placed inside the directory
+"data/modules/contactform_captcha" within you pluck installation.
+
+Use pluck's module page in the admin panel to show compatibility
+information.
+
+Use pluck's module settings page in the admin panel to customize the
+module.
+
+There is a Style Sheet "style_example.css" in the root directory of this
+module, which provides a theme example that should be placed into the
+pluck theme's .css file.
+
+
+Author: Paul Voegler (http://www.voegler.eu/)
+Version 1.0 (October 2012)
+(c) Copyright 2012 Paul Voegler
+License GPL Version 3, 29 June 2007
+See docs/COPYING for the complete license.

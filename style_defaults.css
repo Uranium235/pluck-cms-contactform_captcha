@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/**
+ * Contact form with CAPTCHA
+ *
+ * This file is part of a module for pluck (http://www.pluck-cms.org/).
+ * It provides basic styles for the from.
+ *
+ * @copyright 2012 Paul Voegler
+ * @author Paul Voegler (http://www.voegler.eu/)
+ * @version 1.0 (October 2012)
+ * @license GPL Version 3, 29 June 2007
+ * See docs/COPYING for the complete license.
+ */
+
+
+/* contactform_captcha default styles */
+
+#contactform_captcha {
+	display: block;
+}
+
+#contactform_captcha:after {
+	content: " ";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+#contactform_captcha > div > span.error {
+	display: block;
+}
+
+#contactform_captcha label {
+	display: block;
+}
+
+#cfc_captcha_img {
+	display: inline;
+	vertical-align: top;
+}
+
+#cfc_captcha_update {
+	display: inline-block;
+	vertical-align: top;
+	width: 2em;
+	height: 2em;
+	overflow: hidden;
+}
+
+#cfc_captcha_update img {
+	vertical-align: top;
+	width: 200%;
+	height: 100%;
+}
+
+#cfc_captcha_update:hover img, #cfc_captcha_update:active img, #cfc_captcha_update:focus img {
+	margin-left: -100%;
+}
+
+#cfc_captcha_play {
+	display: inline-block;
+	vertical-align: top;
+	width: 2em;
+	height: 2em;
+	overflow: hidden;
+}
+
+#cfc_captcha_play img {
+	vertical-align: top;
+	width: 500%;
+	height: 100%;
+}
+
+#cfc_captcha_play:hover img, #cfc_captcha_play:active img, #cfc_captcha_play:focus img {
+	margin-left: -100%;
+}
+
+#cfc_captcha_play.loading img {
+	margin-left: -200%;
+}
+
+#cfc_captcha_play.playing img {
+	margin-left: -300%;
+}
+
+#cfc_captcha_play.error img {
+	margin-left: -400%;
+}
