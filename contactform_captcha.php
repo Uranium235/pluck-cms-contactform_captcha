@@ -15,7 +15,7 @@
 defined('IN_PLUCK') OR exit('Access denied!');
 
 define('CFC_DIR', str_replace('\\', '/', rtrim(dirname(__FILE__), '/\\') . '/'));
-define('CFC_URL', str_replace('\\', '/', substr(rtrim(dirname($_SERVER['SCRIPT_FILENAME']), '/\\'), strlen(rtrim($_SERVER['DOCUMENT_ROOT'], '/\\')))) . '/data/modules/contactform_captcha/');
+define('CFC_URL', str_replace('\\', '/', substr(CFC_DIR, strlen(rtrim(realpath($_SERVER['DOCUMENT_ROOT']), '/\\')))));
 
 require_once(CFC_DIR . 'basic.php');
 
@@ -188,7 +188,7 @@ function encode_mimeheader_word($word, $wordlength = 75) {
 function encode_mimeheader($text, $linelength = 78) {
 	$callback = create_function('$matches', 'return encode_mimeheader_word($matches[0], ' . min(75, $linelength - 1) . ');');
 
-	$out = preg_replace_callback('/ [^ \r\n]*? [\x80-\xFF] [^ \r\n]* /xs', $callback, $text);
+	$out = preg_replace_callback('/ [^\x0A\x0D\x20]*? [\x80-\xFF] [^\x0A\x0D\x20]* /xs', $callback, $text);
 
 	return wordwrap($out, $linelength, "\r\n ", false);
 }
