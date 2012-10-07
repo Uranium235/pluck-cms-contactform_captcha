@@ -70,9 +70,11 @@ function detect_gpc() {
 }
 
 function set_default_settings () {
+	/*ini_set('magic_quotes_sybase', 0);
+	ini_set('magic_quotes_runtime', 0);
 	if (function_exists('set_magic_quotes_runtime')) @set_magic_quotes_runtime(false);
 	if (function_exists('date_default_timezone_set')) date_default_timezone_set('UTC');
-	ini_set('date.timezone', 'UTC');
+	ini_set('date.timezone', 'UTC');*/
 	ini_set('default_mimetype', 'text/html');
 	ini_set('default_charset', 'UTF-8');
 	ini_set('mbstring.internal_encoding', 'UTF-8');
@@ -173,7 +175,7 @@ function encodeToIso($string) {
 }
 
 function u8gpc($string, $printableAsciiOnly = true, $strip_tags = false, $url_decode = false) {
-	if (function_exists('get_magic_quotes_gpc') && @get_magic_quotes_gpc()) $string = stripslashes($string);
+	//if (function_exists('get_magic_quotes_gpc') && @get_magic_quotes_gpc()) $string = stripslashes($string);
 	if ($url_decode) $string = urldecode($string);
 	if ($strip_tags) $string = strip_tags($string);
 	if (CHARSET_GPC !== 'UTF-8') {
