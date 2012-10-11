@@ -36,6 +36,7 @@ function contactform_captcha_info() {
 
 function contactform_captcha_settings_default() {
 	return array(
+		'logo_show' => 'true',
 		'email_checkhost' => 'false',
 		'captcha_enabled' => 'true',
 		'captcha_audio' => 'true',
@@ -54,6 +55,7 @@ function contactform_captcha_settings_default() {
 function contactform_captcha_admin_module_settings_beforepost() {
 	global $lang;
 
+	$logo_show = (bool)(module_get_setting('contactform_captcha', 'logo_show') === 'true');
 	$email_checkhost = (bool)(module_get_setting('contactform_captcha', 'email_checkhost') === 'true');
 	$captcha_enabled = (bool)(module_get_setting('contactform_captcha', 'captcha_enabled') === 'true');
 	$captcha_audio = (bool)(module_get_setting('contactform_captcha', 'captcha_audio') === 'true');
@@ -72,6 +74,10 @@ function contactform_captcha_admin_module_settings_beforepost() {
 ?>
 <span class="kop2"><?php eu8x($lang['contactform_captcha']['module_name']); ?></span>
 <table>
+	<tr>
+		<td><input type="checkbox" name="cfc_logo_show" id="cfc_logo_show" value="true"<?php if ($logo_show) echo ' checked="checked"'; ?> /></td>
+		<td>&emsp; <label for="cfc_logo_show"><?php eu8x($lang['contactform_captcha']['cfg_logo_show']); ?></label></td>
+	</tr>
 	<tr>
 		<td><input type="checkbox" name="cfc_email_checkhost" id="cfc_email_checkhost" value="true"<?php if ($email_checkhost) echo ' checked="checked"'; ?> /></td>
 		<td>&emsp; <label for="cfc_email_checkhost"><?php eu8x($lang['contactform_captcha']['cfg_email_checkhost']); ?></label></td>
@@ -138,6 +144,7 @@ function contactform_captcha_admin_module_settings_beforepost() {
 
 function contactform_captcha_admin_module_settings_afterpost() {
 	$settings = array(
+		'logo_show' => (string)(isset($_POST['cfc_logo_show']) ? 'true' : 'false'),
 		'email_checkhost' => (string)(isset($_POST['cfc_email_checkhost']) ? 'true' : 'false'),
 		'captcha_enabled' => (string)(isset($_POST['cfc_captcha_enabled']) ? 'true' : 'false'),
 		'captcha_audio' => (string)(isset($_POST['cfc_captcha_audio']) ? 'true' : 'false'),

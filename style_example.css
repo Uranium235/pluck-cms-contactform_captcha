@@ -16,33 +16,52 @@
 /* contactform_captcha common styles */
 
 form {
-	margin-top: 0.7em;
-	margin-bottom: 0.5em;
+	margin: 0;
 	font-size: 100%;
 	color: #333333;
 }
 
+fieldset {
+	margin: 0;
+	border: none;
+	padding: 0;
+}
+
+form ul, form ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+form li {
+	margin: 0;
+	padding: 0;
+}
+
 input, textarea, select {
-	margin: 0.2em 0;
+	margin: 0;
 	border: 0.1em solid #c0c0c0;
 	border-radius: 0.4em;
 	padding: 0.2em;
-	background: #fbfbfb;
-	/*box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0; /* conflicts with browser form validation highlights */
+	background: #f7f7f7;
+	font: inherit;
 	font-size: 100%;
+	transition: all 0.1s linear 0s;
 }
 
 input:hover, textarea:hover, select:hover {
 	border-color: #0088bf;
+	transition: all 0.1s linear 0s;
 }
 
 input:active, input:focus, textarea:active, textarea:focus, select:active, select:focus {
 	border-color: #0088bf;
 	background-color: #fefefe;
-	/*box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0, 0 0 0.2em 0 #0088bf; /* conflicts with browser form validation highlights */
+	box-shadow: 0 0 0.2em 0 #0088bf;
+	transition: all 0.1s linear 0s;
 }
 
-input[type="submit"], input[type="reset"], input[type="button"] {
+button, input[type="submit"], input[type="reset"], input[type="button"] {
 	border: 0.1em solid #a0a0a0;
 	border-radius: 0.4em;
 	padding: 0.2em 1em;
@@ -50,13 +69,15 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 	box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0;
 	color: #333333;
 	font-weight: bold;
+	transition: all 0.1s linear 0s;
 }
 
-input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:focus, input[type="reset"]:hover, input[type="reset"]:active, input[type="reset"]:focus, input[type="button"]:hover, input[type="button"]:active, input[type="button"]:focus {
+button:hover, button:active, button:focus, input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:focus, input[type="reset"]:hover, input[type="reset"]:active, input[type="reset"]:focus, input[type="button"]:hover, input[type="button"]:active, input[type="button"]:focus {
 	border-color: #0088bf;
 	box-shadow: inset 0 0.4em 0.4em -0.1em #c0c0c0, 0 0 0.2em 0 #0088bf;
 	color: #0088bf;
 	cursor: pointer;
+	transition: all 0.1s linear 0s;
 }
 
 /* contactform_captcha specific styles */
@@ -69,12 +90,16 @@ input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:fo
 	color: #00a368;
 }
 
-#contactform_captcha {
-	margin: 1.3em 0;
-	width: 32.6em;
+#contactform_captcha h2 {
+	font-size: 115%;
 }
 
-#contactform_captcha:after {
+#contactform_captcha fieldset {
+	margin: 0.8em 0;
+	width: 30em;
+}
+
+#contactform_captcha fieldset:after {
 	content: " ";
 	clear: both;
 	display: block;
@@ -82,12 +107,13 @@ input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:fo
 	visibility: hidden;
 }
 
-#contactform_captcha > div > span.error {
-	font-size: 115%;
+#contactform_captcha li {
+	margin-bottom: 0.6em;
 }
 
 #contactform_captcha label {
-	margin: 0.7em 0 0.2em 0;
+	display: block;
+	margin: 0 0 0.2em 0;
 	font-weight: bold;
 }
 
@@ -102,26 +128,27 @@ input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:fo
 
 #cfc_logo {
 	float: right;
-	margin-top: 1em;
+	margin-top: 1.2em;
 	width: 10em;
 	height: 6.5em;
 }
 
 #cfc_name, #cfc_email {
-	width: 20em;
+	width: 18.4em;
 }
 
 #cfc_subject {
-	width: 32em;
+	width: 29.4em;
 }
 
 #cfc_message {
-	width: 32em;
+	width: 29.4em;
 	height: 14em;
 }
 
 #cfc_captcha {
 	display: block;
+	margin-bottom: 0.2em;
 	width: 3.4em;
 }
 
@@ -137,10 +164,14 @@ input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:fo
 	height: 4em;
 }
 
-#cfc_captcha_update {
+#contactform_captcha #cfc_captcha_update {
 	float: left;
+	width: 2em;
+	height: 2em;
 }
 
-#cfc_captcha_play {
+#contactform_captcha #cfc_captcha_play {
 	float: left;
+	width: 2em;
+	height: 2em;
 }

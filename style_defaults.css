@@ -15,34 +15,8 @@
 
 /* contactform_captcha default styles */
 
-#contactform_captcha {
-	display: block;
-}
-
-#contactform_captcha:after {
-	content: " ";
-	clear: both;
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
-
-#contactform_captcha > div > span.error {
-	display: block;
-}
-
-#contactform_captcha label {
-	display: block;
-}
-
-#cfc_captcha_img {
-	display: inline;
-	vertical-align: top;
-}
-
 #cfc_captcha_update {
 	display: inline-block;
-	vertical-align: top;
 	width: 2em;
 	height: 2em;
 	overflow: hidden;
@@ -60,7 +34,6 @@
 
 #cfc_captcha_play {
 	display: inline-block;
-	vertical-align: top;
 	width: 2em;
 	height: 2em;
 	overflow: hidden;

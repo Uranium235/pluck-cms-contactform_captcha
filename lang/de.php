@@ -41,6 +41,7 @@ $lang['contactform_captcha']['field_invalid'] = 'Ungültige Felddaten für: ';
 $lang['contactform_captcha']['send_error'] = 'Ihre Nachricht wurde nicht versendet. Es trat ein Fehler auf.';
 $lang['contactform_captcha']['send_success'] = 'Vielen Dank für Ihre Nachricht. Ihre Nachricht wurde versendet.';
 $lang['contactform_captcha']['email_title'] = 'Kontaktformular';
+$lang['contactform_captcha']['cfg_logo_show'] = 'Logo-Bild anzeigen';
 $lang['contactform_captcha']['cfg_email_checkhost'] = 'Hostnamen der E-Mail-Adresse des Absenders verifizieren';
 $lang['contactform_captcha']['cfg_captcha_enable'] = 'CAPTCHA aktivieren';
 $lang['contactform_captcha']['cfg_captcha_audio'] = 'Audio CAPTCHA aktivieren';

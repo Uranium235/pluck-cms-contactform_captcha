@@ -38,6 +38,7 @@ function contactform_captcha_theme_main() {
 	$subject = '';
 	$message = '';
 	$captcha = '';
+	$logo_show = (bool)(module_get_setting('contactform_captcha', 'logo_show') === 'true');
 	$email_checkhost = (bool)(module_get_setting('contactform_captcha', 'email_checkhost') === 'true');
 	$captcha_enabled = (bool)(module_get_setting('contactform_captcha', 'captcha_enabled') === 'true');
 	$captcha_audio = (bool)(module_get_setting('contactform_captcha', 'captcha_audio') === 'true');
@@ -134,28 +135,43 @@ function contactform_captcha_theme_main() {
 ?>
 <script type="text/javascript" src="<?php eu8x(CFC_URL); ?>contactform_captcha.js"></script>
 <form id="contactform_captcha" method="post" accept-charset="UTF-8 UTF-16BE UTF-16 UTF-32BE UTF-32 Windows-1252 ISO-8859-1 ISO-8859-15" enctype="multipart/form-data" action="<?php eu8x(htmlspecialchars($_SERVER['REQUEST_URI'])); ?>" onsubmit="return cfc_formCheck(this, false, '<?php eu8x(CFC_URL); ?>captcha_json.php', 'cfc_captcha_update');">
-	<div>
-		<input name="charset_check" type="hidden" value="&auml;&Scaron;" /><span id="contactform_captcha_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['form_error']); ?></span>
-		<img id="cfc_logo" src="<?php eu8x(CFC_URL); ?>images/logo.png" width="160" height="114" alt="mail" />
-		<label for="cfc_name"><?php eu8x($lang['general']['name']); ?> <span id="cfc_name_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['name_error']); ?></span></label>
-		<input id="cfc_name" name="name" type="text" size="30" maxlength="64" tabindex="1" value="<?php eu8x($name); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['name_placeholder']); ?>" />
-		<label for="cfc_email"><?php eu8x($lang['general']['email']); ?> <span id="cfc_email_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['email_error']); ?></span></label>
-		<input id="cfc_email" name="email" type="email" size="30" maxlength="64" tabindex="2" value="<?php eu8x($email); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['email_placeholder']); ?>" />
-		<label for="cfc_subject"><?php eu8x($lang['contactform_captcha']['subject']); ?> <span id="cfc_subject_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['subject_error']); ?></span></label>
-		<input id="cfc_subject" name="subject" type="text" size="48" maxlength="64" tabindex="3" value="<?php eu8x($subject); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['subject_placeholder']); ?>" />
-		<label for="cfc_message"><?php eu8x($lang['general']['message']); ?> <span id="cfc_message_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['message_error']); ?></span></label>
-		<textarea id="cfc_message" name="message" maxlength="10240" cols="72" rows="16" wrap="soft" tabindex="4" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['message_placeholder']); ?>" ><?php eu8x($message); ?></textarea>
+	<h2 id="contactform_captcha_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['form_error']); ?></h2>
+	<fieldset>
+		<input name="charset_check" type="hidden" value="&auml;&Scaron;" />
+<?php if ($logo_show) { ?>
+		<img id="cfc_logo" src="<?php eu8x(CFC_URL); ?>images/logo.png" width="160" height="104" alt="mail" />
+<?php } ?>
+		<ol>
+			<li>
+				<label for="cfc_name"><?php eu8x($lang['general']['name']); ?> <span id="cfc_name_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['name_error']); ?></span></label>
+				<input id="cfc_name" name="name" type="text" size="30" maxlength="64" tabindex="1" value="<?php eu8x($name); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['name_placeholder']); ?>" />
+			</li>
+			<li>
+				<label for="cfc_email"><?php eu8x($lang['general']['email']); ?> <span id="cfc_email_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['email_error']); ?></span></label>
+				<input id="cfc_email" name="email" type="email" size="30" maxlength="64" tabindex="2" value="<?php eu8x($email); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['email_placeholder']); ?>" />
+			</li>
+			<li>
+				<label for="cfc_subject"><?php eu8x($lang['contactform_captcha']['subject']); ?> <span id="cfc_subject_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['subject_error']); ?></span></label>
+				<input id="cfc_subject" name="subject" type="text" size="48" maxlength="64" tabindex="3" value="<?php eu8x($subject); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['subject_placeholder']); ?>" />
+			</li>
+			<li>
+				<label for="cfc_message"><?php eu8x($lang['general']['message']); ?> <span id="cfc_message_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['message_error']); ?></span></label>
+				<textarea id="cfc_message" name="message" maxlength="10240" cols="72" rows="16" wrap="soft" tabindex="4" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['message_placeholder']); ?>" ><?php eu8x($message); ?></textarea>
+			</li>
 <?php if ($captcha_enabled) { ?>
-		<label for="cfc_captcha"><?php eu8x($lang['contactform_captcha']['captcha']); ?> <span id="cfc_captcha_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_error']); ?></span><span id="cfc_captcha_error_invalid" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_invalid']); ?></span></label>
-		<img id="cfc_captcha_img" src="<?php eu8x(CFC_URL); ?>captcha_png.php?uid=<?php eu8x($uid); ?>" height="<?php eu8x($captcha_height); ?>" alt="CAPTCHA" />
-		<input id="cfc_captcha" name="captcha" type="text" size="<?php eu8x($captcha_codelen); ?>" maxlength="<?php eu8x($captcha_codelen); ?>" tabindex="5" value="" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['captcha_placeholder']); ?>" />
-		<a id="cfc_captcha_update" href="#" title="<?php eu8x($lang['contactform_captcha']['update']); ?>" tabindex="7" onclick="this.blur(); return captchaUpdate(this, 'cfc_captcha_img', 'cfc_captcha_audio', 'cfc_captcha_play');"><img src="<?php eu8x(CFC_URL); ?>images/update.png" alt="update" width="64" height="32" /></a>
+			<li>
+				<label for="cfc_captcha"><?php eu8x($lang['contactform_captcha']['captcha']); ?> <span id="cfc_captcha_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_error']); ?></span><span id="cfc_captcha_error_invalid" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_invalid']); ?></span></label>
+				<img id="cfc_captcha_img" src="<?php eu8x(CFC_URL); ?>captcha_png.php?uid=<?php eu8x($uid); ?>" height="<?php eu8x($captcha_height); ?>" alt="CAPTCHA" />
+				<input id="cfc_captcha" name="captcha" type="text" size="<?php eu8x($captcha_codelen); ?>" maxlength="<?php eu8x($captcha_codelen); ?>" tabindex="5" value="" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['captcha_placeholder']); ?>" />
+				<a id="cfc_captcha_update" href="#" title="<?php eu8x($lang['contactform_captcha']['update']); ?>" tabindex="7" onclick="this.blur(); return captchaUpdate(this, 'cfc_captcha_img', 'cfc_captcha_audio', 'cfc_captcha_play');"><img src="<?php eu8x(CFC_URL); ?>images/update.png" alt="update" width="64" height="32" /></a>
 <?php if ($captcha_audio) { ?>
-		<a id="cfc_captcha_play" href="<?php eu8x(CFC_URL); ?>captcha_wav.php?uid=<?php eu8x($uid); ?>" title="<?php eu8x($lang['contactform_captcha']['play']); ?>" tabindex="8" onclick="this.blur(); return captchaPlay(this, 'cfc_captcha_audio');"><img src="<?php eu8x(CFC_URL); ?>images/speaker.png" alt="speaker" width="160" height="32" /></a>
-		<audio id="cfc_captcha_audio" src="<?php eu8x(CFC_URL); ?>captcha_wav.php?uid=<?php eu8x($uid); ?>" preload="none" onwaiting="document.getElementById('cfc_captcha_play').className='loading';" onplaying="document.getElementById('cfc_captcha_play').className='playing';" onended="document.getElementById('cfc_captcha_play').className='';" style="display: none;"></audio>
+				<a id="cfc_captcha_play" href="<?php eu8x(CFC_URL); ?>captcha_wav.php?uid=<?php eu8x($uid); ?>" title="<?php eu8x($lang['contactform_captcha']['play']); ?>" tabindex="8" onclick="this.blur(); return captchaPlay(this, 'cfc_captcha_audio');"><img src="<?php eu8x(CFC_URL); ?>images/speaker.png" alt="speaker" width="160" height="32" /></a>
+				<audio id="cfc_captcha_audio" src="<?php eu8x(CFC_URL); ?>captcha_wav.php?uid=<?php eu8x($uid); ?>" preload="none" onwaiting="document.getElementById('cfc_captcha_play').className='loading';" onplaying="document.getElementById('cfc_captcha_play').className='playing';" onended="document.getElementById('cfc_captcha_play').className='';" style="display: none;"></audio>
 <?php }} ?>
-		<input id="cfc_submit" type="submit" value="<?php eu8x($lang['general']['send']); ?>" tabindex="6" onclick="this.blur(); return true;" />
-	</div>
+				<input id="cfc_submit" type="submit" value="<?php eu8x($lang['general']['send']); ?>" tabindex="6" onclick="this.blur(); return true;" />
+			</li>
+		</ol>
+	</fieldset>
 </form>
 <?php
 }
