@@ -158,8 +158,8 @@ function contactform_captcha_theme_main() {
 				<label for="cfc_message"><?php eu8x($lang['general']['message']); ?> <span id="cfc_message_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['message_error']); ?></span></label>
 				<textarea id="cfc_message" name="message" maxlength="10240" cols="46" rows="8" wrap="soft" tabindex="4" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['message_placeholder']); ?>" ><?php eu8x($message); ?></textarea>
 			</li>
-<?php if ($captcha_enabled) { ?>
 			<li>
+<?php if ($captcha_enabled) { ?>
 				<label for="cfc_captcha"><?php eu8x($lang['contactform_captcha']['captcha']); ?> <span id="cfc_captcha_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_error']); ?></span><span id="cfc_captcha_error_invalid" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['captcha_invalid']); ?></span></label>
 				<img id="cfc_captcha_img" src="<?php eu8x(CFC_URL); ?>captcha_png.php?uid=<?php eu8x($uid); ?>" height="<?php eu8x($captcha_height); ?>" alt="CAPTCHA" />
 				<input id="cfc_captcha" name="captcha" type="text" size="<?php eu8x($captcha_codelen); ?>" maxlength="<?php eu8x($captcha_codelen); ?>" tabindex="5" value="" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['captcha_placeholder']); ?>" />
