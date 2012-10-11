@@ -144,19 +144,19 @@ function contactform_captcha_theme_main() {
 		<ol>
 			<li>
 				<label for="cfc_name"><?php eu8x($lang['general']['name']); ?> <span id="cfc_name_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['name_error']); ?></span></label>
-				<input id="cfc_name" name="name" type="text" size="30" maxlength="64" tabindex="1" value="<?php eu8x($name); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['name_placeholder']); ?>" />
+				<input id="cfc_name" name="name" type="text" size="30" maxlength="255" tabindex="1" value="<?php eu8x($name); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['name_placeholder']); ?>" />
 			</li>
 			<li>
 				<label for="cfc_email"><?php eu8x($lang['general']['email']); ?> <span id="cfc_email_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['email_error']); ?></span></label>
-				<input id="cfc_email" name="email" type="email" size="30" maxlength="64" tabindex="2" value="<?php eu8x($email); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['email_placeholder']); ?>" />
+				<input id="cfc_email" name="email" type="email" size="30" maxlength="254" tabindex="2" value="<?php eu8x($email); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['email_placeholder']); ?>" />
 			</li>
 			<li>
 				<label for="cfc_subject"><?php eu8x($lang['contactform_captcha']['subject']); ?> <span id="cfc_subject_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['subject_error']); ?></span></label>
-				<input id="cfc_subject" name="subject" type="text" size="48" maxlength="64" tabindex="3" value="<?php eu8x($subject); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['subject_placeholder']); ?>" />
+				<input id="cfc_subject" name="subject" type="text" size="48" maxlength="255" tabindex="3" value="<?php eu8x($subject); ?>" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['subject_placeholder']); ?>" />
 			</li>
 			<li>
 				<label for="cfc_message"><?php eu8x($lang['general']['message']); ?> <span id="cfc_message_error" class="error" style="display: none;"><?php eu8x($lang['contactform_captcha']['message_error']); ?></span></label>
-				<textarea id="cfc_message" name="message" maxlength="10240" cols="72" rows="16" wrap="soft" tabindex="4" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['message_placeholder']); ?>" ><?php eu8x($message); ?></textarea>
+				<textarea id="cfc_message" name="message" maxlength="10240" cols="46" rows="8" wrap="soft" tabindex="4" required="required" placeholder="<?php eu8x($lang['contactform_captcha']['message_placeholder']); ?>" ><?php eu8x($message); ?></textarea>
 			</li>
 <?php if ($captcha_enabled) { ?>
 			<li>
