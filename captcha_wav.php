@@ -25,7 +25,7 @@ function mt_rand_oi($a = 0, $b = 1) {
 }
 
 function audioError(Exception $e) {
-    //throw $e;
+	//throw $e;
 	global $audio_path;
 	header('Content-Type: audio/x-wav', true, 200);
 	header('Content-Disposition: attachment;filename="error.wav"', true);
@@ -70,9 +70,9 @@ if (strlen($captcha_code) <= 0) audioError(new Exception('No CODE!'));
 
 if ($captcha_sensitive) {
 	try {
-        $wav_capital = new WavFile($audio_path . $captcha_audiotheme . '/' . 'capital.wav');
+		$wav_capital = new WavFile($audio_path . $captcha_audiotheme . '/' . 'capital.wav');
 	} catch (Exception $e) {
-        audioError($e);
+		audioError($e);
 	}
 }
 
@@ -81,9 +81,9 @@ for ($i = 0; $i < strlen($captcha_code); $i++) {
 	$wav->insertSilence(mt_rand_oi(0.25, 1));
 
 	try {
-        $wav_letter = new WavFile($audio_path . $captcha_audiotheme . '/' . strtolower($captcha_code[$i]) . '.wav');
+		$wav_letter = new WavFile($audio_path . $captcha_audiotheme . '/' . strtolower($captcha_code[$i]) . '.wav');
 	} catch (Exception $e) {
-        audioError($e);
+		audioError($e);
 	}
 
 	if ($captcha_sensitive && $captcha_code[$i] !== strtolower($captcha_code[$i])) {
@@ -106,19 +106,19 @@ if (is_dir($audio_path . 'backgrounds/')) {
 
 if (!empty($audio_backgrounds)) {
 	try {
-	    $wav_bg = new WavFile($audio_path . 'backgrounds/' . $audio_backgrounds[(int)mt_rand_oi(0, count($audio_backgrounds))], false);
+		$wav_bg = new WavFile($audio_path . 'backgrounds/' . $audio_backgrounds[(int)mt_rand_oi(0, count($audio_backgrounds))], false);
 	} catch (Exception $e) {
-	    audioError($e);
+		audioError($e);
 	}
 
 	$randOffset = 0;
 	try {
-	    if ($wav_bg->getNumBlocks() > 2 * $wav->getNumBlocks()) {
-	        $randBlock = (int)mt_rand_oi(0, $wav_bg->getNumBlocks() - $wav->getNumBlocks() + 1);
-	        $wav_bg->readWavData($randBlock * $wav_bg->getBlockAlign(), $wav->getNumBlocks() * $wav_bg->getBlockAlign());
-	    } else {
-	        $wav_bg->readWavData();
-	        $randOffset = (int)mt_rand_oi(0, $wav_bg->getNumBlocks());
+		if ($wav_bg->getNumBlocks() > 2 * $wav->getNumBlocks()) {
+			$randBlock = (int)mt_rand_oi(0, $wav_bg->getNumBlocks() - $wav->getNumBlocks() + 1);
+			$wav_bg->readWavData($randBlock * $wav_bg->getBlockAlign(), $wav->getNumBlocks() * $wav_bg->getBlockAlign());
+		} else {
+			$wav_bg->readWavData();
+			$randOffset = (int)mt_rand_oi(0, $wav_bg->getNumBlocks());
 	    }
 	} catch (Exception $e) {
 		audioError($e);
