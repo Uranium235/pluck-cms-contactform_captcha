@@ -124,6 +124,7 @@ button:hover, button:active, button:focus, input[type="submit"]:hover, input[typ
 
 #contactform_captcha input.error, #contactform_captcha textarea.error {
 	box-shadow: 0 0 0.2em 0.1em #ff0000;
+	color: inherit;
 }
 
 #cfc_logo {

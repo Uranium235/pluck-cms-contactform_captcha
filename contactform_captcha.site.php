@@ -65,7 +65,7 @@ function contactform_captcha_theme_main() {
 		} elseif ($email_checkhost) {
 			$host = substr($email, strpos($email, '@') + 1);
 			$mxhosts = array();
-			if (!(function_exists('getmxrr') && getmxrr($host, $mxhosts)) && $host === gethostbyname($host)) {
+			if (!preg_match('/^(?:\d{1,3}\.){3}\d{1,3}$/', $host) && !(function_exists('getmxrr') && getmxrr($host, $mxhosts)) && $host === gethostbyname($host)) {
 				$valid = false;
 				echo '<p class="error">' . u8x($lang['contactform_captcha']['email_invalid']) . "</p>\n";
 			}
