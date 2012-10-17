@@ -48,7 +48,7 @@ function contactform_captcha_theme_main() {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// fetch fields
 		$name = (string)substr(trim(u8gpc(@$_POST['name'])), 0, 255);
-		$email = (string)substr(trim(u8gpc(@$_POST['email'])), 0, 255);
+		$email = (string)substr(trim(u8gpc(@$_POST['email'])), 0, 254);
 		$subject = (string)substr(trim(u8gpc(@$_POST['subject'])), 0, 255);
 		$message = (string)substr(trim(u8gpc(@$_POST['message'])), 0, 10240);
 		$captcha = (string)substr(trim(u8gpc(@$_POST['captcha'])), 0, 255);
@@ -59,7 +59,7 @@ function contactform_captcha_theme_main() {
 			$valid = false;
 			echo '<p class="error">' . u8x($lang['contactform_captcha']['field_invalid']) . "name</p>\n";
 		}
-		if (!preg_match('/^[a-zA-Z0-9.!#$%&\'*+\/=?\^_`{|}~\-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/', $email) && strlen($email) <= 254) {
+		if (!preg_match('/^[a-zA-Z0-9.!#$%&\'*+\/=?\^_`{|}~\-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/', $email) || strlen($email) > 254) {
 			$valid = false;
 			echo '<p class="error">' . u8x($lang['contactform_captcha']['field_invalid']) . "email</p>\n";
 		} elseif ($email_checkhost) {
