@@ -12,7 +12,7 @@
  * See docs/COPYING for the complete license.
  */
 
-function detect_gpc() {
+function detect_charset_gpc() {
 	$check = '';
 	$charset_gpc = '';
 	if (!empty($_POST['charset_check'])) {
@@ -30,7 +30,7 @@ function detect_gpc() {
 			$charset_gpc = 'UTF-8';
 			break;
 		case 'e48a':
-			$charset_gpc = 'Windows-1252'; // or ISO-8859-1
+			$charset_gpc = 'Windows-1252'; // or ISO-8859-1, which is a subset of Windows-1252
 			break;
 		case 'e4a6':
 			$charset_gpc = 'ISO-8859-15';
@@ -56,12 +56,12 @@ function detect_gpc() {
 	}
 
 	if (!$charset_gpc && ini_get('mbstring.encoding_translation') && function_exists('mb_internal_encoding')) {
-		$charset_gpc = mb_internal_encoding();
+		$charset_gpc = strtoupper(mb_internal_encoding());
 	}
 
 	if (!$charset_gpc && isset($_SERVER['CONTENT_TYPE'])) {
 		$matches = array();
-		if (preg_match('/charset\\s*\\=\\s*([a-zA-Z0-9\\-]+)/i', $_SERVER['CONTENT_TYPE'], $matches)) $charset_gpc = $matches[1];
+		if (preg_match('/charset\\s*\\=\\s*([a-zA-Z0-9\\-]+)/i', $_SERVER['CONTENT_TYPE'], $matches)) $charset_gpc = strtoupper($matches[1]);
 	}
 
 	if (!defined('CHARSET_GPC')) define('CHARSET_GPC', $charset_gpc);
@@ -70,30 +70,30 @@ function detect_gpc() {
 }
 
 function set_default_settings () {
-	/*ini_set('magic_quotes_sybase', 0);
+	/*if (function_exists('set_magic_quotes_runtime')) @set_magic_quotes_runtime(false);
 	ini_set('magic_quotes_runtime', 0);
-	if (function_exists('set_magic_quotes_runtime')) @set_magic_quotes_runtime(false);
+	//ini_set('magic_quotes_sybase', 0); //skip to allow detection - magic_quotes_runtime disables this anyway
 	if (function_exists('date_default_timezone_set')) date_default_timezone_set('UTC');
 	ini_set('date.timezone', 'UTC');*/
 	ini_set('default_mimetype', 'text/html');
 	ini_set('default_charset', 'UTF-8');
-	ini_set('mbstring.internal_encoding', 'UTF-8');
-	ini_set('mbstring.regex_encoding', 'UTF-8');
-	ini_set('mbstring.http_output', 'pass');
 	if (function_exists('mb_internal_encoding')) mb_internal_encoding('UTF-8');
+	ini_set('mbstring.internal_encoding', 'UTF-8');
 	if (function_exists('mb_regex_encoding')) mb_regex_encoding('UTF-8');
+	ini_set('mbstring.regex_encoding', 'UTF-8');
 	if (function_exists('mb_http_output')) mb_http_output('pass');
+	ini_set('mbstring.http_output', 'pass');
+	if (function_exists('iconv_set_encoding')) {
+		iconv_set_encoding('input_encoding', 'UTF-8');
+		iconv_set_encoding('internal_encoding', 'UTF-8');
+		iconv_set_encoding('output_encoding', 'UTF-8');
+	}
 	ini_set('iconv.input_encoding', 'UTF-8');
 	ini_set('iconv.internal_encoding', 'UTF-8');
 	ini_set('iconv.output_encoding', 'UTF-8');
-	if (function_exists('iconv_set_encoding')) {
-		iconv_set_encoding("input_encoding", 'UTF-8');
-		iconv_set_encoding("internal_encoding", 'UTF-8');
-		iconv_set_encoding("output_encoding", 'UTF-8');
-	}
 }
 
-function check_encoding($string, $encoding) {
+function check_encoding($string, $encoding = 'UTF-8') {
 	return $string === mb_convert_encoding($string, $encoding, $encoding);
 }
 
@@ -174,19 +174,21 @@ function encodeToIso($string) {
 	return mb_convert_encoding($string, "Windows-1252", detect_encoding($string));
 }
 
-function u8gpc($string, $printableAsciiOnly = true, $strip_tags = false, $url_decode = false) {
-	//if (function_exists('get_magic_quotes_gpc') && @get_magic_quotes_gpc()) $string = stripslashes($string);
-	if ($url_decode) $string = urldecode($string);
-	if ($strip_tags) $string = strip_tags($string);
-	if (CHARSET_GPC !== 'UTF-8') {
-		if (CHARSET_GPC) {
-			$string = mb_convert_encoding($string, 'UTF-8', CHARSET_GPC);
+function u8gpc($string, $inputcharset = '') {
+	if (!$inputcharset && defined('CHARSET_GPC')) $inputcharset = CHARSET_GPC;
+
+	if ($inputcharset !== 'UTF-8') {
+		if ($inputcharset) {
+			$string = mb_convert_encoding($string, 'UTF-8', $inputcharset);
 		} else {
 			$string = encodeToUtf8($string);
 		}
 	}
 
-	if (!is_utf8($string, $printableAsciiOnly)) trigger_error('Invalid characters sent!', E_USER_ERROR);
+	if (!is_utf8($string, true)) {
+		trigger_error('Invalid characters sent!', E_USER_ERROR);
+		return false;
+	}
 
 	return $string;
 }
@@ -197,11 +199,10 @@ function u8x($string) {
 }
 
 function eu8x($string) {
-	//echo str_replace("\r", '', htmlspecialchars($string, ENT_COMPAT, 'UTF-8', true));
 	echo strtr($string, array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', "\r" => ''));
 }
 
 
-detect_gpc();
+detect_charset_gpc();
 set_default_settings();
 ?>
