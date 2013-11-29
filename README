@@ -25,6 +25,11 @@ source, all files and folders must be inside a directory called
 Otherwise all files and folders must be placed inside the directory
 "data/modules/contactform_captcha" within you pluck installation.
 
+The directories "data/modules/contactform_captcha/audio" and
+"data/modules/contactform_captcha/fonts" should be made inacessible to
+the public for security reasons.
+e.g. with a .htaccess file inside those folders denying access.
+
 Use pluck's module page in the admin panel to show compatibility
 information.
 
