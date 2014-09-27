@@ -11,10 +11,7 @@
  * @license GPL Version 3, 29 June 2007
  * See docs/COPYING for the complete license.
  */
-
-//Name of the language.
-$language = 'German';
-
+ 
 //----------------
 //Translation data.
 $lang['contactform_captcha']['module_name'] = 'Kontaktformular mit CAPTCHA';

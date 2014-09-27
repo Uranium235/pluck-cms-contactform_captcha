@@ -12,9 +12,6 @@
  * See docs/COPYING for the complete license.
  */
 
-//Name of the language.
-$language = 'English';
-
 //----------------
 //Translation data.
 $lang['contactform_captcha']['module_name']  = 'Contact form with CAPTCHA';
@@ -39,13 +36,13 @@ $lang['contactform_captcha']['captcha_error'] = 'please enter the security code'
 $lang['contactform_captcha']['captcha_invalid'] = 'the security code is invalid';
 $lang['contactform_captcha']['field_invalid'] = 'Invalid field data for: ';
 $lang['contactform_captcha']['send_error'] = 'Your message was not sent. An error occurred.';
-$lang['contactform_captcha']['send_success'] = 'Thank you for your message. Your message has been sent succesfully.';
+$lang['contactform_captcha']['send_success'] = 'Thank you for your message. Your message has been sent successfully.';
 $lang['contactform_captcha']['email_title'] = 'Contactform';
 $lang['contactform_captcha']['cfg_logo_show'] = 'Show logo image';
 $lang['contactform_captcha']['cfg_email_checkhost'] = 'Verify the host name of the sender\'s e-mail address';
 $lang['contactform_captcha']['cfg_captcha_enable'] = 'Enable CAPTCHA';
 $lang['contactform_captcha']['cfg_captcha_audio'] = 'Enable audio CAPTCHA';
-$lang['contactform_captcha']['cfg_captcha_sensitive'] = 'Code is case sesitive';
+$lang['contactform_captcha']['cfg_captcha_sensitive'] = 'Code is case sensitive';
 $lang['contactform_captcha']['cfg_captcha_codelen'] = 'Code length';
 $lang['contactform_captcha']['cfg_captcha_maxretries'] = 'Verification attempts';
 $lang['contactform_captcha']['cfg_captcha_charset'] = 'Code character set';
