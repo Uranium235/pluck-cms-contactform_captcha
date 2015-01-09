@@ -122,7 +122,8 @@ function contactform_captcha_admin_module_settings_beforepost() {
 		<td><select name="cfc_captcha_font">
 <?php
 	foreach ($fonts as $font) {
-		echo "\t\t\t<option value=\"" . u8x($font) . "\"" . ($font === $captcha_font ? ' selected="selected"' : '') . ">" . u8x($font) . "</option>\n";
+		if ($font[0] != '.')
+			echo "\t\t\t<option value=\"" . u8x($font) . "\"" . ($font === $captcha_font ? ' selected="selected"' : '') . ">" . u8x($font) . "</option>\n";
 	}
 ?>
 		</select></td>
