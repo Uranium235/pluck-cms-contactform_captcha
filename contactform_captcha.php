@@ -7,7 +7,7 @@
  *
  * @copyright 2012 Paul Voegler
  * @author Paul Voegler (http://www.voegler.eu/)
- * @version 1.0 (October 2012)
+ * @version 1.1 (January 2015)
  * @license GPL Version 3, 29 June 2007
  * See docs/COPYING for the complete license.
  */
@@ -26,7 +26,7 @@ function contactform_captcha_info() {
 	return array(
 		'name'          => $lang['contactform_captcha']['module_name'],
 		'intro'         => $lang['contactform_captcha']['module_intro'],
-		'version'       => '1.0',
+		'version'       => '1.1',
 		'author'        => 'Paul Voegler',
 		'website'       => 'http://www.voegler.eu/',
 		'icon'          => 'images/icon.png',
