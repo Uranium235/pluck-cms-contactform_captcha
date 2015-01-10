@@ -7,7 +7,7 @@
  *
  * @copyright 2012 Paul Voegler
  * @author Paul Voegler (http://www.voegler.eu/)
- * @version 1.0 (October 2012)
+ * @version 1.2 (January 2015)
  * @license GPL Version 3, 29 June 2007
  * See docs/COPYING for the complete license.
  */
@@ -16,14 +16,17 @@ defined('IN_PLUCK') OR exit('Access denied!');
 defined('CFC_URL') OR exit('Invalid request!');
 
 
-function contactform_captcha_site_theme(&$page_theme) {
-	header('Date: '.gmdate('r'), true);
-	header('Expires: '.gmdate('r', time() - 86400), true);
-	header('Last-Modified: '.gmdate('r'), true);
-	header('Cache-Control: no-cache,no-store,max-age=0,must-revalidate,post-check=0,pre-check=0', true);
-	header('Pragma: no-cache', true);
-	header('Vary: *', true);
-	header('Accept-Charset: UTF-8,UTF-16BE;q=0.8,UTF-16;q=0.75,UTF-32BE;q=0.7,UTF-32;q=0.65,Windows-1252;q=0.5,ISO-8859-1;q=0.3,ISO-8859-15;q=0.1,*;q=0', true);
+function contactform_captcha_site_theme_file(&$page_theme_file) {
+	if (!defined('CFC_HEADERS') && module_is_included_in_page('contactform_captcha', CURRENT_PAGE_SEONAME)) {
+		header('Date: '.gmdate('r'), true);
+		header('Expires: '.gmdate('r', time() - 86400), true);
+		header('Last-Modified: '.gmdate('r'), true);
+		header('Cache-Control: no-cache,no-store,max-age=0,must-revalidate,post-check=0,pre-check=0', true);
+		header('Pragma: no-cache', true);
+		header('Vary: *', true);
+		header('Accept-Charset: UTF-8,UTF-16BE;q=0.8,UTF-16;q=0.75,UTF-32BE;q=0.7,UTF-32;q=0.65,Windows-1252;q=0.5,ISO-8859-1;q=0.3,ISO-8859-15;q=0.1,*;q=0', true);
+		define('CFC_HEADERS', true);
+	}
 }
 
 function contactform_captcha_theme_meta() {

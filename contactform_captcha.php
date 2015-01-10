@@ -7,7 +7,7 @@
  *
  * @copyright 2012 Paul Voegler
  * @author Paul Voegler (http://www.voegler.eu/)
- * @version 1.0 (October 2012)
+ * @version 1.2 (January 2015)
  * @license GPL Version 3, 29 June 2007
  * See docs/COPYING for the complete license.
  */
@@ -26,7 +26,7 @@ function contactform_captcha_info() {
 	return array(
 		'name'          => $lang['contactform_captcha']['module_name'],
 		'intro'         => $lang['contactform_captcha']['module_intro'],
-		'version'       => '1.0',
+		'version'       => '1.2',
 		'author'        => 'Paul Voegler',
 		'website'       => 'http://www.voegler.eu/',
 		'icon'          => 'images/icon.png',
@@ -122,7 +122,8 @@ function contactform_captcha_admin_module_settings_beforepost() {
 		<td><select name="cfc_captcha_font">
 <?php
 	foreach ($fonts as $font) {
-		echo "\t\t\t<option value=\"" . u8x($font) . "\"" . ($font === $captcha_font ? ' selected="selected"' : '') . ">" . u8x($font) . "</option>\n";
+		if ($font[0] != '.')
+			echo "\t\t\t<option value=\"" . u8x($font) . "\"" . ($font === $captcha_font ? ' selected="selected"' : '') . ">" . u8x($font) . "</option>\n";
 	}
 ?>
 		</select></td>
