@@ -7,7 +7,7 @@
  *
  * @copyright 2012 Paul Voegler
  * @author Paul Voegler (http://www.voegler.eu/)
- * @version 1.1 (January 2015)
+ * @version 1.2 (January 2015)
  * @license GPL Version 3, 29 June 2007
  * See docs/COPYING for the complete license.
  */
