@@ -1,2 +1,8 @@
+1.2 (2015-01-10)
+  - Fix: Do not alter headers more than once
+1.1 (2015-01-09)
+  - Fix: Exclude hidden files from font list in admin panel
+  - Fix: Do not alter http headers if module is not included in page
+  - Add: Include Polish language
 1.0 (2012-10-02)
   - Initial release for pluck v4.7
