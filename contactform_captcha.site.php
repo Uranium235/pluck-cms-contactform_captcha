@@ -16,7 +16,7 @@ defined('IN_PLUCK') OR exit('Access denied!');
 defined('CFC_URL') OR exit('Invalid request!');
 
 
-function contactform_captcha_site_theme(&$page_theme) {
+function contactform_captcha_site_theme_file(&$page_theme_file) {
 	if (module_is_included_in_page('contactform_captcha', CURRENT_PAGE_SEONAME)) {
 		header('Date: '.gmdate('r'), true);
 		header('Expires: '.gmdate('r', time() - 86400), true);
